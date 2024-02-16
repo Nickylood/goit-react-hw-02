@@ -1,0 +1,14 @@
+.btn {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn button {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.btn button:last-child {
+  margin-right: 10;
+}
