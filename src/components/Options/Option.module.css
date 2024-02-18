@@ -1,14 +1,31 @@
+.div {
+  display: flex;
+}
+
 .btn {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.btn button {
-  display: inline-block;
-  vertical-align: middle;
+  background-color: lightgrey;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  transition-duration: 0.5s;
   margin-right: 10px;
+  padding: 8px 10px;
+  width: 100px;
 }
 
-.btn button:last-child {
-  margin-right: 10;
+.btn:last-child {
+  margin-right: 0;
+}
+
+.btn:hover {
+  background-color: rgb(0, 167, 131);
+  border: none;
+}
+.btn:active {
+  box-shadow: 0 4px #666;
+  transform: translateY(4px);
+}
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
 }
