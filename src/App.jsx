@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Descriptin from "./components/Description/Description";
 import Options from "./components/Options/Options";
 import Feedback from "./components/FeedBack/FeedBack";
 import Notification from "./components/Notification";
 
+const initLocal = { good: 0, neutral: 0, bad: 0 };
+
+const getInitialFeedback = () => {
+  const localStorage = window.localStorage.getItem("feedback");
+  return localStorage !== null ? JSON.parse(localStorage) : initLocal;
+};
+
 export default function App() {
-  const [clicks, setClicks] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const [clicks, setClicks] = useState(getInitialFeedback);
+
+  useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(clicks));
+  }, [clicks]);
 
   const updateFeedback = (feedbackType) => {
     setClicks({
@@ -19,17 +26,14 @@ export default function App() {
   };
 
   const resetFeedback = () => {
-    setClicks({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
+    setClicks(initLocal);
   };
 
   const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
 
-  const positiveFeedback =
-    Math.round(((clicks.good + clicks.neutral) / totalFeedback) * 100);
+  const positiveFeedback = Math.round(
+    ((clicks.good + clicks.neutral) / totalFeedback) * 100
+  );
 
   return (
     <>
